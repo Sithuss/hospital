@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register Admin
+{% endblock %}
+
+{% block main %}
+    <form action="/register/admin" method="post">
+        <div class="mb-3">
+            <input autofocus autocomplete="off" class="form-control mx-auto w-auto" name="username" placeholder="username" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="password" id="exampleFormControlInput11" placeholder="password" type="password">
+            <input type="checkbox" class="mb-3" onclick="showpass()"> Show password
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="confirmation" id="exampleFormControlInput12" placeholder="re-type (password)" type="password">
+            <input type="checkbox" class="mb-3" onclick="showpass1()"> Show password          
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="mail" placeholder="Mail" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="phonenumber" placeholder="contact" type="text">
+        </div>
+        <button class="btn btn-info" type="submit"a>register</button>
+    </form>
+{% endblock %}

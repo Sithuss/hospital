@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Update Paient Details
+{% endblock %}
+
+{% block main %}
+    <form action="/update/details" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="name" placeholder="Patient name" type="text">
+        </div>
+        <button class="btn btn-info mb-3" type="submit">search</button>        
+    </form>
+
+    {% if data %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Time</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <form action="/updater" method="post">
+                        <tr>
+                            <input name="id" value="{{ row.patient_id }}" type="hidden">
+                            <input name="p_name" value="{{ row.patient_name }}" type="hidden">
+                            <td>{{ row["patient_name"] }}</td>
+                            <td>{{ row["age"] }}</td>
+                            <td>{{ row["gender"] }}</td>
+                            <td>{{ row["p_dt"] }}</td>
+                            <td><button class="btn btn-info" type="submit">--></button></td>
+                        </tr>
+                    </form>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

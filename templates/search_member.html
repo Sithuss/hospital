@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Member Search
+{% endblock %}
+
+{% block main %}
+    <form action="/search_member" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="name" type="text">
+        </div>
+        <button class="btn btn-info mb-3" type="submit"s>search</button>
+    </form>
+
+    {% if data %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Mail</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row["name"] }}</td>
+                    <td>{{ row["status"] }}</td>
+                    <td>{{ row["mail"] }}</td>
+                    <td>{{ row["phonenumber"] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

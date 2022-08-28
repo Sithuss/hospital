@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Email authorization
+{% endblock %}
+
+{% block main %}
+    <form action="/confirmation" method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Confirmation code</label>
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="exampleFormControlInput1" name="code" type="text">
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Member Registration
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3 member">
+        Member Registration
+    </div>
+    <form action="/register/member" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="password" id="exampleFormControlInput11" placeholder="Password" type="password">
+            <input type="checkbox" class="mb-3" onclick="showpass()"> Show password
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="confirmation" id="exampleFormControlInput12" placeholder="Re-type (password)" type="password">
+            <input type="checkbox" class="mb-3" onclick="showpass1()"> Show password 
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="mail" placeholder="Mail" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="phone" placeholder="Contact" type="tel">
+        </div>
+        <button class="btn btn-info" type="submit">Register</button>
+    </form>
+{% endblock %}

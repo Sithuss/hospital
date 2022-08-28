@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account Profile
+{% endblock %}
+
+{% block main %}
+<div class="member">
+    <h1>Account Settings</h1>
+</div>
+<div class="bg-white shadow rounded-lg py-5 my-5 container d-block d-sm-flex">
+    <div class="d-flex align-items-start">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="true">profile</button>
+            <button class="nav-link" id="v-pills-name-tab" data-bs-toggle="pill" data-bs-target="#v-pills-name" type="button" role="tab" aria-controls="v-pills-name" aria-selected="false">Name</button>
+            <button class="nav-link" id="v-pills-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-password" type="button" role="tab" aria-controls="v-pills-password" aria-selected="false">Password</button>
+            <button class="nav-link" id="v-pills-contact-tab" data-bs-toggle="pill" data-bs-target="#v-pills-contact" type="button" role="tab" aria-controls="v-pills-contact" aria-selected="false">Contact</button>
+            <button class="nav-link" id="v-pills-email-tab" data-bs-toggle="pill" data-bs-target="#v-pills-email" type="button" role="tab" aria-controls="v-pills-email" aria-selected="false">Email</button>
+        </div>
+        <div class="tab-content" id="v-pills-tabContent">
+            {% for row in data %}
+            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-name-profile">
+                <div class="mb-3 ms-5 text-start">
+                    <label for="exampleFormControlInput1" class="form-label">Username</label>
+                    <input class="form-control" id="exampleFormControlInput1" placeholder="{{ row.name }}" disabled>
+                </div>
+                <div class="mb-3 ms-5 text-start">
+                    <label for="exampleFormControlInput1" class="form-label">Status</label>
+                    <input class="form-control" id="exampleFormControlInput1" placeholder="{{ session['user_status'] }}" disabled>
+                </div>
+                <div class="mb-3 ms-5 text-start">
+                    <label for="exampleFormControlInput1" class="form-label">Contact</label>
+                    <input class="form-control" id="exampleFormControlInput1" placeholder="{{ row.phonenumber }}" disabled>
+                </div>
+                <div class="mb-3 ms-5 text-start">
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input class="form-control" id="exampleFormControlInput1" placeholder="{{ row.mail }}" disabled>
+                </div>
+                <div class="mb-3 ms-5 text-start">
+                    <label for="exampleFormControlInput1" class="form-label">Registration time</label>
+                    <input class="form-control" id="exampleFormControlInput1" placeholder="{{ row.dt }}" disabled>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-name" role="tabpanel" aria-labelledby="v-pills-name-tab">
+                <form action="/change_name" method="POST">
+                    <div class="mb-3 ms-5 text-start">
+                        <label for="exampleFormControlInput1" class="form-label">Username</label>
+                        <input autocomplete="off" class="form-control" id="exampleFormControlInput1" name="name" placeholder="{{ row.name }}" type="text">
+                    </div>
+                    <button class="btn btn-secondary" onclick="return change_name()">Change</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="v-pills-password" role="tabpanel" aria-labelledby="v-pills-password-tab">
+                <form action="/change_password" method="POST">
+                    <div class="mb-3 ms-5 text-start">
+                        <label for="exampleFormControlInput11" class="form-label">Old password</label>
+                        <input autocomplete="off" class="form-control" id="exampleFormControlInput11" name="old" type="password">
+                        <input type="checkbox" onclick="showpass()"> Show password
+                    </div>
+                    <div class="mb-3 ms-5 text-start">
+                        <label for="exampleFormControlInput12" class="form-label">New passowrd</label>
+                        <input autocomplete="off" class="form-control" id="exampleFormControlInput12" name="new" type="password">
+                        <input type="checkbox" onclick="showpass1()"> Show password
+                    </div>
+                    <div class="mb-3 ms-5 text-start">
+                        <label for="exampleFormControlInput13" class="form-label">Re-type new password</label>
+                        <input autocomplete="off" class="form-control" id="exampleFormControlInput13" name="confirm" type="password">
+                        <input type="checkbox" onclick="showpass2()"> Show password
+                    </div>
+                    <button class="btn btn-secondary" onclick="return change_password()">Change</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="v-pills-contact" role="tabpanel" aria-labelledby="v-pills-contact-tab">
+                <form action="/change_contact" method="POST">
+                    <div class="mb-3 ms-5 text-start">
+                        <label for="exampleFormControlInput1" class="form-label">Contact number</label>
+                        <input autocomplete="off" class="form-control" id="exampleFormControlInput1" name="contact" placeholder="{{ row.phonenumber }}" type="tel">
+                    </div>
+                    <button class="btn btn-secondary" onclick="return change_contact()">Change</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="v-pills-email" role="tabpanel" aria-labelledby="v-pills-email-tab">
+                <form action="/change_mail" method="POST">
+                    <div class="mb-3 ms-5 text-start">
+                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                        <input autocomplete="off" class="form-control" id="exampleFormControlInput1" name="mail" placeholder="{{ row.mail }}" type="text">
+                    </div>
+                    <button class="btn btn-secondary" onclick="return change_mail()">Change</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

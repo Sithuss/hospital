@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Patient Register
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3 patient">
+        Patient Registration
+    </div>
+    <form action="/Patient_register" method="post">
+        <div class="mb-3">
+            <table class="table table-bordered table-success table-striped border-light">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th style="width:25%">Age</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input autocomplete="off" class="form-control w-100" name="name" type="text"></td>
+                        <td><input autocomplete="off" class="form-control" name="age" min="0" type="number"></td>
+                        <td>
+                            <input type="radio" name="gender" value="male">Male<br>
+                            <input class="ms-auto" type="radio" name="gender" value="female">Female<br>
+                            <input type="radio" name="gender" value="other">Other
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <table class="table table-bordered border-light table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width:35%">Contact</th>
+                                        <th>address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input autocomplete="off" class="form-control w-100" name="phone" type="tel"></td>
+                                        <td><textarea autocomplete="off" class="form-control w-100 height20" name="address" type="text"></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="patient">
+            Patient Details
+        </div>
+        <div class="text-muted mb-3">
+            (can ignore)
+        </div>
+        <div class="mb-3">
+            <table class="table table-success table-bordered border-light table-striped">
+                <thead>
+                    <tr>
+                        <th style="width:15%">Vital</th>
+                        <th>Description</th>
+                        <th>Treatment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><textarea autocomplete="off" class="form-control mx-auto w-100 height100" name="vital" type="text"></textarea></td>
+                        <td><textarea autocomplete="off" class="form-control mx-auto w-100 height100" name="description" type="text"></textarea></td>
+                        <td><textarea autocomplete="off" class="form-control mx-auto w-100 height100" name="treatment" type="text"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="total" placeholder="Total" type="number">
+        </div>
+        <button class="btn btn-info" type="submit">Submit</button>
+    </form>
+{% endblock %}

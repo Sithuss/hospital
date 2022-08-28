@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Remove member
+{% endblock %}
+
+{% block main %}
+    <form action="/remove_member" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="name" placeholder="Member name" type="text">
+        </div>
+        <button class="btn btn-info mb-3" type="submit">search</button>
+    </form>
+
+    {% if data %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Registration Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <form action="/remover_member" method="post">
+                        <tr>
+                            <input name="id" value="{{ row.id }}" type="hidden">
+                            <td>{{ row["name"] }}</td>
+                            <td>{{ row["status"] }}</td>
+                            <td>{{ row["dt"] }}</td>
+                            <td><button class="btn btn-danger" onclick="return remove_member()">remove</button></td>
+                        </tr>
+                    </form>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

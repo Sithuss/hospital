@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Re-update registration
+{% endblock %}
+
+{% block main %}
+    <div class="patient mb-3">
+        Re-update registration form
+    </div>
+    <form action="/reupdate/reg" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="name" placeholder="Patient name" type="text">
+        </div>
+        <button class="btn btn-info mb-3" type="submit">search</button>
+    </form>
+
+    {% if data %}
+        <table class="table table-striped mb-3">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <form action="/show_reupdate_reg" method="post">
+                        <tr>
+                            <input name="id" value="{{ row.patient_id }}" type="hidden">
+                            <td>{{ row["patient_name"] }}</td>
+                            <td>{{ row["p_dt"] }}</td>
+                            <td><button class="btn btn-info" type="submit">Change</button></td>
+                        </tr>
+                    </form>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

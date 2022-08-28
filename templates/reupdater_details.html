@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reupdater Details
+{% endblock %}
+
+{% block main %}
+    <div class="box mb-3">
+        {{ name }}
+    </div>
+    <div>
+        {% for row in data %}
+            <div class="mb-2 text-muted">
+                Updated at {{ row["pd_dt"]}}.
+            </div>
+            <form action="/reupdater/details" method="post">
+                <input name="id" value="{{ row.pd_id }}" type="hidden">
+                <input name="dt" value="{{ row.pd_dt }}" type="hidden">
+                <div class="container py-5 bg-white shadow rounded-lg mb-3">
+                    <div class="mb-3 ms-5 text-start">
+                        <label for="exampleFormControlInput1" class="form-label">Vital</label>
+                        <textarea class="form-control height100" id="exampleFormControlInput1" name="vital" placeholder="{{ row.vital }}" type="text"></textarea>
+                    </div>
+                    <div class="mb-3 ms-5 text-start">
+                        <label for="exampleFormControlInput11" class="form-label">Description</label>
+                        <textarea class="form-control height100" id="exampleFormControlInput11" name="description" placeholder="{{ row.description }}" type="text"></textarea>
+                    </div>
+                    <div class="mb-3 ms-5 text-start">
+                        <label for="exampleFormControlInput12" class="form-label">Treatment</label>
+                        <textarea class="form-control height100" id="exampleFormControlInput12" name="treatment" placeholder="{{ row.treatment }}" type="text"></textarea>                    </div>
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" class="form-control mx-auto w-auto" name="total" placeholder="Total" type="number"> 
+                </div>
+                <button class="btn btn-info mb-3" onclick="return submitter()">submit</button>
+            </form>
+        {% endfor %}
+    </div>
+{% endblock %}

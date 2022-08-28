@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+
+        <meta chraset="UTF-8">
+
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <link href="/static/favicon.ico" rel="icon">
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <script src="/static/javascript.js"></script>
+
+        <title>Hospital: {% block title %}{% endblock %}</title>
+
+    </head>
+    <body>
+        <nav class="bg-light border navbar navbar-expand-md navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><span class="yellow">H</span><span class="green">O</span><span class="blue">S</span><span class="red">P</span><span class="brown">I</span><span class="orange">T</span><span class="violet">A</span><span class="omega">L</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav me-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/Patient_register">Patient Registration</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdowner" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Update Patient
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdowner">
+                                  <li><a class="dropdown-item" href="/reupdate/reg">Re-Update Registration</a></li>
+                                  <li><a class="dropdown-item" href="/reupdate/details">Re-Update Details</a></li>
+                                  <li><a class="dropdown-item" href="/update/details">Update Details</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="/remove_patient">remove</a></li>
+                                </ul>
+                              </li>
+
+                            {% if session["user_status"] == "admin" %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Member control
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="/register/member">Register Member</a></li>
+                                        <li><a class="dropdown-item" href="/search_member">Search</a></li>
+                                        <li><a class="dropdown-item" href="/registration/history">Registration History</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="/remove_member">Remove member</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                        </ul>
+                        
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/account">Account Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                        </ul>
+
+                    {% else %}
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/register/admin">Admin Registration</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main>
+            <div class="container-fluid py-5 text-center">
+                {% block main %}{% endblock %}
+            </div>
+        </main>
+
+        <footer>
+            <div class="text-center text-muted mb-3">
+                Designed by sithu.
+            </div>
+        </footer>
+    </body>
+</html>

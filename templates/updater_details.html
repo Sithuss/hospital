@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Updater Details
+{% endblock %}
+
+{% block main %}
+    <div class="box mb-3">
+        {{ name }}
+    </div>
+    <form action="/updater/details" method="post">
+        <input name="id" value="{{ id }}" type="hidden">
+        <div class="container py-5 bg-white shadow rounded-lg mb-3">
+        <nav class="mb-3">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Vital</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Description</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Treatment</button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <textarea name="vital" autocomplete="off" autofocus class="form-control w-100 height100" type="text"></textarea>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <textarea name="description" autocmoplete="off" autofocus class="form-control w-100 height100" type="text"></textarea>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <textarea autocomplete="off" autofocus name="treatment" class="form-control w-100 height100" type="text"></textarea>
+            </div>
+        </div>
+        </div>
+        <input autocomplete="off" class="form-control ms-auto w-auto mb-3" name="total" placeholder="Total" type="number">
+        <button class="btn btn-info" onclick="return updater()">submit</button>
+    </form>
+{% endblock %}

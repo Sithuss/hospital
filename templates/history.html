@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Patient History
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3 labels">
+        Patient History
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Adder</th>
+                <th>Patient</th>
+                <th>Adder status</th>
+                <th>Category</th>
+                <th>Patient registered Time</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row["member"]}}</td>
+                    <td>{{ row["patient"]}}</td>
+                    <td>{{ row["status"]}}</td>
+                    <td>{{ row["category"]}}</td>
+                    <td>{{ row["reg_time"]}}</td>
+                    <td>{{ row["his_dt"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
